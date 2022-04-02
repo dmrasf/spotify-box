@@ -23,8 +23,9 @@ async function updateTopTracks(json) {
     })
   } catch (error) {
     console.error(
-      `spotify-box ran into an issue for getting your gist:\n${error}`
+      `spotify-box ran into an issue for getting your gist ${gist_id}:\n${error}`
     )
+    return
   }
 
   const tracks = json.items.map(item => ({
@@ -52,7 +53,7 @@ async function updateTopTracks(json) {
       gist_id,
       files: {
         [filename]: {
-          filename: '🎵 My Spotify Top Track',
+          filename: '🎵 My Spotify Top Tracks',
           content: lines.join('\n'),
         },
       },
